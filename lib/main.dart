@@ -3,7 +3,12 @@ import 'package:flutter_ui_class/providers/task_management_provider.dart';
 import 'package:flutter_ui_class/screens/UI_page.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async{
+
+  //await Firebase.initializeApp(
+    //options: DefaultFirebaseOptions.currentPlatform,
+  //);
+
   runApp(const FlutterUIApp());
 }
 
