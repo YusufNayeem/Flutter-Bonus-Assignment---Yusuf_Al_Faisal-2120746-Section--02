@@ -4,15 +4,22 @@ class TaskCardWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final IconData? icon;
-
   final VoidCallback? onTap;
+  final VoidCallback? onDelete;
 
-  const TaskCardWidget({super.key, required this.title, required this.subtitle, this.icon, this.onTap});
+  const TaskCardWidget({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    this.icon,
+    this.onTap,
+    this.onDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
 
-    void _handleTap() {
+    void handleTap() {
       print("The card was tapped for $title: $subtitle");
     }
 
@@ -22,9 +29,18 @@ class TaskCardWidget extends StatelessWidget {
         title: Text(title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
         subtitle: Text(subtitle),
         leading: icon != null ? Icon(icon) : Icon(Icons.task),
-        trailing: IconButton(
-          onPressed: onTap ?? _handleTap,
-          icon: Icon(Icons.arrow_forward_ios),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              onPressed: onTap ?? handleTap,
+              icon: Icon(Icons.arrow_forward_ios),
+            ),
+            IconButton(
+              onPressed: onDelete,
+              icon: Icon(Icons.delete, color: Colors.red),
+            ),
+          ],
         ),
       ),
     );
